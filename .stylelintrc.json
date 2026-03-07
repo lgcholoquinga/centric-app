@@ -1,0 +1,17 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "scss/dollar-variable-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "scss/at-mixin-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "scss/at-function-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "scss/percent-placeholder-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "scss/no-duplicate-dollar-variables": true,
+    "scss/no-global-function-names": true,
+    "max-nesting-depth": 4,
+    "declaration-no-important": true,
+    "color-named": "never",
+    "shorthand-property-no-redundant-values": true,
+    "alpha-value-notation": "percentage"
+  },
+  "ignoreFiles": ["dist/**", ".angular/**", "node_modules/**"]
+}

@@ -1,3 +1,44 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Angular 21 SPA (`centric-app`) using standalone components, signals, and Vitest for testing. Package manager is **bun**.
+
+## Commands
+
+```bash
+bun start          # Dev server (http://localhost:4200)
+bun run build      # Production build
+bun test           # Run tests with Vitest via @angular/build:unit-test
+```
+
+To run a single test file:
+
+```bash
+bunx ng test --include="src/app/path/to/file.spec.ts"
+```
+
+Format code with Prettier:
+
+```bash
+bunx prettier --write .
+```
+
+## Architecture
+
+- Entry point: `src/main.ts` → bootstraps `App` component with `appConfig`
+- App config: `src/app/app.config.ts` — add providers here (router, HTTP, etc.)
+- Routes: `src/app/app.routes.ts` — use lazy-loaded feature routes
+- Styles: global SCSS at `src/styles.scss`; component styles use `.scss` (inline or external)
+- Tests: `*.spec.ts` files co-located with source; uses Vitest globals (`describe`, `it`, `expect`) via `tsconfig.spec.json`
+
+## Prettier Config
+
+Single quotes, 100-char print width, Angular parser for HTML templates.
+
+---
 
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
