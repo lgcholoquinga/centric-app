@@ -14,6 +14,10 @@ export default [
         loadComponent: () => import('./pages/list-account/list-account'),
       },
       {
+        path: 'edit/:id',
+        loadComponent: () => import('./pages/edit-account/edit-account'),
+      },
+      {
         path: '',
         redirectTo: 'list',
         pathMatch: 'full',

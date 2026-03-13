@@ -1,2 +1,9 @@
-<p>list-account works!</p>
-,
+<div class="list-account">
+  <div class="list-account__header">
+    <ctc-search (ctcValue)="onSearch($event)" />
+    <ctc-button label="Nueva cuenta" (ctcClick)="create()" size="lg" />
+  </div>
+  <div class="list-account__table">
+    <ctc-table [columns]="columns" [data]="filteredAccounts()" [actions]="actions" />
+  </div>
+</div>
