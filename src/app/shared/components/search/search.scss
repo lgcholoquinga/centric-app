@@ -1,0 +1,14 @@
+@use 'variables' as v;
+@use 'sass:color';
+
+input {
+  padding: 12px;
+  border: 1px solid v.$gray;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover {
+    border-color: color.adjust(v.$gray, $lightness: -12%);
+  }
+}

@@ -1,0 +1,49 @@
+<div class="ctc-table-wrapper" role="region" aria-label="Tabla de datos">
+  <table class="ctc-table">
+    <thead>
+      <tr>
+        @for (col of columns(); track col.key) {
+          <th scope="col">{{ col.header }}</th>
+        }
+        @if (hasActions()) {
+          <th scope="col">Acciones</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @if (data().length === 0) {
+        <tr>
+          <td [attr.colspan]="colspan()" class="ctc-table__empty">
+            {{ emptyMessage() }}
+          </td>
+        </tr>
+      } @else {
+        @for (row of data(); track $index) {
+          <tr
+            class="ctc-table__row"
+            tabindex="0"
+            (click)="rowClick.emit(row)"
+            (keydown)="onRowKeydown($event, row)"
+          >
+            @for (col of columns(); track col.key) {
+              <td>{{ col.cell(row) }}</td>
+            }
+            @if (hasActions()) {
+              <td>
+                <div class="ctc-table__actions">
+                  @for (action of actions(); track action.label) {
+                    <ctc-button
+                      [label]="action.label"
+                      [color]="action.color ?? 'primary'"
+                      (ctcClick)="onActionClick($event, action, row)"
+                    />
+                  }
+                </div>
+              </td>
+            }
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

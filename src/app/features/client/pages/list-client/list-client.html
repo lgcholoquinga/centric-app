@@ -1,2 +1,9 @@
-<p>list-client works!</p>
-,
+<div class="list-client">
+  <div class="list-client__header">
+    <ctc-search (ctcValue)="onSearch($event)" />
+    <ctc-button label="Nuevo" (ctcClick)="create()" size="lg" />
+  </div>
+  <div class="list-client__table">
+    <ctc-table [columns]="columns" [data]="filteredClients()" [actions]="actions" />
+  </div>
+</div>
