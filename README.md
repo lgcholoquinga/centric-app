@@ -1,59 +1,104 @@
 # CentricApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+SPA desarrollada en **Angular 21** con componentes standalone, signals y Vitest para pruebas. Simula un sistema bancario básico con gestión de clientes, cuentas, movimientos y reportes.
 
-## Development server
+---
 
-To start a local development server, run:
+## Stack
 
-```bash
-ng serve
-```
+| Capa            | Tecnología                               |
+| --------------- | ---------------------------------------- |
+| Framework       | Angular 21 (standalone, OnPush, signals) |
+| Estilos         | SCSS + variables globales                |
+| Formularios     | Reactive Forms                           |
+| HTTP / Mock API | HttpClient + json-server                 |
+| PDF             | jsPDF + jspdf-autotable                  |
+| Tests           | Vitest                                   |
+| Package manager | Bun                                      |
+| Linting         | ESLint + Angular ESLint + Stylelint      |
+| Formato         | Prettier                                 |
+| Git hooks       | Husky + lint-staged + commitlint         |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Módulos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Clientes** — CRUD completo con búsqueda y debounce de 300 ms
+- **Cuentas** — CRUD vinculado a clientes (ahorro / corriente)
+- **Movimientos** — Registro de depósitos y retiros con cálculo automático de saldo
+- **Reportes** — Vista filtrable por cliente y rango de fechas con descarga en PDF
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Levantar el ambiente
 
-```bash
-ng generate --help
-```
+### Requisitos previos
 
-## Building
+- [Bun](https://bun.sh/) ≥ 1.3
+- [Node.js](https://nodejs.org/) ≥ 20
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### 1. Instalar dependencias
 
 ```bash
-ng e2e
+bun install
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 2. Iniciar el mock API (json-server)
 
-## Additional Resources
+```bash
+bun run server
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Queda disponible en `http://localhost:3000`. Endpoints: `/clients`, `/accounts`, `/movements`.
+
+### 3. Iniciar la aplicación
+
+```bash
+bun start
+```
+
+Abre el navegador en `http://localhost:4200`.
+
+> Ambos procesos deben correr en paralelo (dos terminales).
+
+---
+
+## Comandos disponibles
+
+```bash
+bun start           # Servidor de desarrollo (http://localhost:4200)
+bun run server      # Mock API con json-server (http://localhost:3000)
+bun run build       # Build de producción
+bun test            # Ejecutar tests con Vitest
+bun run lint        # ESLint
+bun run stylelint   # Stylelint para SCSS
+bun run format      # Formatear con Prettier
+```
+
+### Correr un test específico
+
+```bash
+bunx ng test --include="src/app/path/to/file.spec.ts"
+```
+
+---
+
+## Estructura del proyecto
+
+```
+src/
+├── app/
+│   ├── features/
+│   │   ├── client/        # Módulo clientes
+│   │   ├── account/       # Módulo cuentas
+│   │   ├── movement/      # Módulo movimientos
+│   │   ├── report/        # Módulo reportes
+│   │   └── layout/        # Dashboard y sidebar
+│   └── shared/
+│       ├── components/    # Button, Table, Search, Sidebar
+│       ├── interfaces/    # Tipos compartidos
+│       ├── services/      # PdfService (global)
+│       └── stores/        # MenuStore (global)
+├── assets/scss/           # Variables, mixins y estilos globales
+└── environments/          # Configuración por entorno
+```
