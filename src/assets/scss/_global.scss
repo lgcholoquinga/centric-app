@@ -1,6 +1,12 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -50,4 +56,9 @@ ul {
 
 .text-right {
   text-align: right;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
 }

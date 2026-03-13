@@ -1,0 +1,36 @@
+@use 'variables' as v;
+
+.sidebar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__item {
+    list-style: none;
+    width: 100%;
+
+    &--link {
+      padding: 12px;
+      border-radius: 4px;
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      color: v.$black;
+      transition:
+        background 0.3s,
+        color 0.3s;
+
+      &:hover {
+        background: v.$gray;
+        color: v.$white;
+      }
+
+      &.active {
+        background: v.$gray;
+        color: v.$white;
+      }
+    }
+  }
+}
