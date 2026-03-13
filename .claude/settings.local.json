@@ -3,7 +3,8 @@
     "allow": [
       "mcp__context7__resolve-library-id",
       "mcp__context7__query-docs",
-      "mcp__angular-cli__get_best_practices"
+      "mcp__angular-cli__get_best_practices",
+      "Bash(cd \"D:/front/angular/spas/centric-app\" && bun add jspdf jspdf-autotable 2>&1)"
     ]
   }
 }

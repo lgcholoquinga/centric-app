@@ -34,7 +34,14 @@
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/scss"]
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "html2canvas",
+              "canvg",
+              "rgbcolor",
+              "raf",
+              "core-js"
+            ]
           },
           "configurations": {
             "production": {

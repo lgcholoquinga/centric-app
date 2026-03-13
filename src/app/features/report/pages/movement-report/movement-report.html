@@ -1,0 +1,97 @@
+<div class="movement-report">
+  <!-- Filters -->
+  <div class="movement-report__filters">
+    <div class="form-field">
+      <label for="filterClient">Client</label>
+      <select id="filterClient" (change)="onFilterClient($event)">
+        <option value="">All clients</option>
+        @for (client of clientOptions(); track client.id) {
+          <option [value]="client.id">{{ client.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="filterFrom">From</label>
+      <input type="date" id="filterFrom" (change)="onFilterDateFrom($event)" />
+    </div>
+    <div class="form-field">
+      <label for="filterTo">To</label>
+      <input type="date" id="filterTo" (change)="onFilterDateTo($event)" />
+    </div>
+    <ctc-button label="Download PDF" color="secondary" size="lg" (ctcClick)="downloadPdf()" />
+  </div>
+
+  <!-- Stats -->
+  <div class="movement-report__stats" role="region" aria-label="Summary">
+    <div class="stat-card stat-card--total">
+      <span class="stat-card__label">Movements</span>
+      <span class="stat-card__value">{{ filteredRows().length }}</span>
+    </div>
+    <div class="stat-card stat-card--deposit">
+      <span class="stat-card__label">Total deposits</span>
+      <span class="stat-card__value">${{ totalDeposits().toFixed(2) }}</span>
+    </div>
+    <div class="stat-card stat-card--withdrawal">
+      <span class="stat-card__label">Total withdrawals</span>
+      <span class="stat-card__value">${{ totalWithdrawals().toFixed(2) }}</span>
+    </div>
+    <div
+      class="stat-card"
+      [class.stat-card--deposit]="netBalance() >= 0"
+      [class.stat-card--withdrawal]="netBalance() < 0"
+    >
+      <span class="stat-card__label">Net balance</span>
+      <span class="stat-card__value">${{ netBalance().toFixed(2) }}</span>
+    </div>
+  </div>
+
+  <!-- Report table -->
+  @if (filteredRows().length > 0) {
+    <div class="movement-report__table" role="region" aria-label="Movement report">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Client</th>
+            <th scope="col">Account</th>
+            <th scope="col">Account type</th>
+            <th scope="col">Type</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of filteredRows(); track $index) {
+            <tr
+              [class.movement-report__row--deposit]="row.amount > 0"
+              [class.movement-report__row--withdrawal]="row.amount < 0"
+            >
+              <td>{{ row.date }}</td>
+              <td>{{ row.client }}</td>
+              <td>{{ row.accountNumber }}</td>
+              <td>{{ row.accountType }}</td>
+              <td>
+                <span
+                  class="movement-report__badge"
+                  [class.movement-report__badge--deposit]="row.amount > 0"
+                  [class.movement-report__badge--withdrawal]="row.amount < 0"
+                >
+                  {{ row.type }}
+                </span>
+              </td>
+              <td
+                [class.movement-report__amount--deposit]="row.amount > 0"
+                [class.movement-report__amount--withdrawal]="row.amount < 0"
+              >
+                {{ row.amount > 0 ? '+' : '' }}${{ Math.abs(row.amount).toFixed(2) }}
+              </td>
+              <td>${{ row.balance.toFixed(2) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <p class="movement-report__empty">No movements found for the selected filters.</p>
+  }
+</div>

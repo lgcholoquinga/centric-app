@@ -22,6 +22,10 @@ export const routes: Routes = [
         path: 'movement',
         loadChildren: () => import('./features/movement/movement.routes'),
       },
+      {
+        path: 'report',
+        loadChildren: () => import('./features/report/report.routes'),
+      },
     ],
   },
 ];
