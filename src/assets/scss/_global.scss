@@ -1,6 +1,12 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -50,4 +56,41 @@ ul {
 
 .text-right {
   text-align: right;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  input,
+  select {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    font-size: 1.6rem;
+    outline: none;
+    border-radius: 6px;
+    font-family: v.$font;
+    background-color: v.$white;
+    color: v.$black;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: v.$terciary;
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23172554' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+  }
 }

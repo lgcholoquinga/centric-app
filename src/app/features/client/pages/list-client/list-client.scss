@@ -1,0 +1,12 @@
+.list-client {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+
+  &__table {
+    display: block;
+  }
+}

@@ -1,0 +1,9 @@
+<ul class="sidebar">
+  @for (menu of menus(); track $index) {
+    <li class="sidebar__item">
+      <a class="sidebar__item--link" [routerLink]="menu.route" routerLinkActive="active">
+        {{ menu.label }}
+      </a>
+    </li>
+  }
+</ul>

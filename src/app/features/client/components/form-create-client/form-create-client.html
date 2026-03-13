@@ -1,0 +1,29 @@
+<h3>{{ title() }}</h3>
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label for="name">Name</label>
+    <input spellcheck="false" autocomplete="off" type="text" id="name" formControlName="name" />
+  </div>
+  <div class="form-field">
+    <label for="adress">Address</label>
+    <input spellcheck="false" autocomplete="off" type="text" id="adress" formControlName="adress" />
+  </div>
+  <div class="form-field">
+    <label for="phone">Phone</label>
+    <input spellcheck="false" autocomplete="off" type="text" id="phone" formControlName="phone" />
+  </div>
+  <div class="form-field">
+    <label for="password">Password</label>
+    <input
+      spellcheck="false"
+      autocomplete="off"
+      type="password"
+      id="password"
+      formControlName="password"
+    />
+  </div>
+  <div class="actions">
+    <ctc-button type="submit" label="Save client" size="lg" />
+    <ctc-button label="Back" size="lg" color="secondary" routerLink="/client" />
+  </div>
+</form>
