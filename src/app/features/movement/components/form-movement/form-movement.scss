@@ -1,0 +1,28 @@
+form {
+  max-width: 450px;
+
+  .form-movement__preview {
+    background-color: #f5f7fa;
+    border: 1px solid #e0e4ea;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+
+    p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+
+    &--negative {
+      color: #c0392b;
+    }
+  }
+
+  .actions {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="list-movement">
+  <div class="list-movement__filters">
+    <div class="form-field">
+      <label for="filterClient">Client</label>
+      <select id="filterClient" (change)="onFilterClient($event)">
+        <option value="">All clients</option>
+        @for (client of clientOptions(); track client.id) {
+          <option [value]="client.id">{{ client.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="filterFrom">From</label>
+      <input type="date" id="filterFrom" (change)="onFilterDateFrom($event)" />
+    </div>
+    <div class="form-field">
+      <label for="filterTo">To</label>
+      <input type="date" id="filterTo" (change)="onFilterDateTo($event)" />
+    </div>
+    <ctc-button label="New movement" (ctcClick)="onCreate()" size="lg" />
+  </div>
+  <div class="list-movement__table">
+    <ctc-table [columns]="columns" [data]="filteredMovements()" [actions]="actions" />
+  </div>
+</div>

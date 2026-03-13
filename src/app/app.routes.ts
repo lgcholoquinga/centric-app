@@ -18,6 +18,10 @@ export const routes: Routes = [
         path: 'client',
         loadChildren: () => import('./features/client/client.routes'),
       },
+      {
+        path: 'movement',
+        loadChildren: () => import('./features/movement/movement.routes'),
+      },
     ],
   },
 ];

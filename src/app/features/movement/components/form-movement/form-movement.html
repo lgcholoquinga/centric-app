@@ -1,0 +1,45 @@
+<h3>New Movement</h3>
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label for="date">Date</label>
+    <input type="date" id="date" formControlName="date" />
+  </div>
+  <div class="form-field">
+    <label for="accountId">Account</label>
+    <select id="accountId" formControlName="accountId">
+      <option value="" disabled>Select an account</option>
+      @for (option of accountOptions(); track option.id) {
+        <option [value]="option.id">{{ option.label }}</option>
+      }
+    </select>
+  </div>
+  <div class="form-field">
+    <label for="type">Type</label>
+    <select id="type" formControlName="type">
+      <option value="deposit">Deposit</option>
+      <option value="withdrawal">Withdrawal</option>
+    </select>
+  </div>
+  <div class="form-field">
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" formControlName="amount" min="1" />
+  </div>
+
+  @if (selectedAccount()) {
+    <div class="form-movement__preview" aria-live="polite">
+      <p><strong>Client:</strong> {{ clientName() }}</p>
+      <p><strong>Current balance:</strong> ${{ currentBalance().toFixed(2) }}</p>
+      <p
+        class="form-movement__preview--new-balance"
+        [class.form-movement__preview--negative]="newBalance() < 0"
+      >
+        <strong>New balance:</strong> ${{ newBalance().toFixed(2) }}
+      </p>
+    </div>
+  }
+
+  <div class="actions">
+    <ctc-button type="submit" label="Save movement" size="lg" />
+    <ctc-button label="Back" size="lg" color="secondary" routerLink="/movement" />
+  </div>
+</form>
